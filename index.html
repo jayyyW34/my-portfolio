@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Task Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem('habitTrackerTheme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-top">
+        <div class="brand">
+          <span class="brand-icon">✦</span>
+          <h1>Daily Tracker</h1>
+        </div>
+        <div class="header-actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="Switch to light mode"
+            title="Toggle theme"
+          >
+            <span class="theme-toggle__track">
+              <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+              </span>
+              <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg>
+              </span>
+              <span class="theme-toggle__knob"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+      <p class="date-display" id="dateDisplay"></p>
+    </header>
+
+    <section class="progress-card">
+      <div class="progress-header">
+        <h2>Today's Progress</h2>
+        <span class="progress-percent" id="progressPercent">0%</span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+      </div>
+      <p class="progress-meta" id="progressMeta">0 of 0 tasks completed</p>
+    </section>
+
+    <nav class="category-filters" id="categoryFilters" aria-label="Filter by category">
+      <!-- buttons rendered by script.js -->
+    </nav>
+
+    <main class="main-content">
+      <section class="panel tasks-panel">
+        <div class="panel-header">
+          <h2>
+            <span class="panel-icon">✓</span>
+            Today's Tasks
+          </h2>
+          <div class="panel-header__actions">
+            <button
+              type="button"
+              class="clear-completed-btn"
+              id="clearCompletedBtn"
+              hidden
+            >
+              Clear Completed
+            </button>
+            <span class="panel-count" id="tasksCount">0</span>
+          </div>
+        </div>
+        <form class="add-form" id="taskForm">
+          <div class="add-form__fields">
+            <input
+              type="text"
+              id="taskInput"
+              placeholder="Add a task for today…"
+              autocomplete="off"
+              maxlength="80"
+            >
+            <select id="taskCategory" class="category-select" aria-label="Task category">
+              <option value="health">🥦 Health</option>
+              <option value="chores">🧹 Chores</option>
+              <option value="spirituality">🙏 Spirituality</option>
+              <option value="hobbies">🎨 Hobbies</option>
+              <option value="finance">💸 Finance</option>
+            </select>
+            <button type="submit" aria-label="Add task">+</button>
+          </div>
+        </form>
+        <ul class="item-list" id="tasksList"></ul>
+        <p class="empty-state" id="tasksEmpty">No tasks yet. What will you accomplish today?</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Complete all your tasks to hit 100% and celebrate 🎉</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
